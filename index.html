@@ -25,7 +25,34 @@ footer{color:#e5b8c8;font-size:.875rem}
 .poster-map a:nth-child(6){--reveal:url("reveals/6.jpg");--crop:24%}
 @media(hover:hover){.poster-map a:hover{z-index:1}.poster-map a:hover::after{opacity:1}}
 .poster-map a:focus-visible::after{opacity:1}
-@media(prefers-reduced-motion:reduce){.poster-map a::after{transition:none}}</style>
+@media(prefers-reduced-motion:reduce){.poster-map a::after{transition:none}}
+/* Center the homepage artwork and navigation; keep the credit at the bottom. */
+body::before{background-position:center center}
+html:has(main > section):not(:has(main > section:not([hidden]))){overflow-y:auto}
+main:not(:has(> section:not([hidden]))){
+  min-height:100svh;
+  justify-content:center;
+  padding-block:16px;
+}
+main:not(:has(> section:not([hidden])))>.poster{
+  width:min(100%,max(240px,calc((100svh - 180px)*4/3)));
+  margin-inline:auto;
+  flex-shrink:0;
+}
+main:not(:has(> section:not([hidden])))>.artist-credit{margin-top:0}
+/* Retain the original centered layout space while anchoring only the logo. */
+main:not(:has(> section:not([hidden])))>.artist-credit img{visibility:hidden}
+main:not(:has(> section:not([hidden])))>.artist-credit::after{
+  content:"";
+  position:fixed;
+  bottom:.6rem;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(145px,60vw);
+  aspect-ratio:580/247;
+  background:url("artist-sigil-red.png") center/contain no-repeat;
+  pointer-events:none;
+}</style>
 </head>
 <body>
 <main>
