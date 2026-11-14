@@ -41,7 +41,7 @@ main:not(:has(> section:not([hidden])))>.poster{
 }
 main:not(:has(> section:not([hidden])))>.artist-credit{margin-top:0}
 /* Retain the original centered layout space while anchoring only the logo. */
-main:not(:has(> section:not([hidden])))>.artist-credit img{visibility:hidden}
+main:not(:has(> section:not([hidden])))>.artist-credit img{visibility:hidden;width:min(145px,60%)}
 main:not(:has(> section:not([hidden])))>.artist-credit::after{
   content:"";
   position:fixed;
