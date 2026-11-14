@@ -26,22 +26,36 @@ footer{color:#e5b8c8;font-size:.875rem}
 @media(hover:hover){.poster-map a:hover{z-index:1}.poster-map a:hover::after{opacity:1}}
 .poster-map a:focus-visible::after{opacity:1}
 @media(prefers-reduced-motion:reduce){.poster-map a::after{transition:none}}
-/* Center the homepage artwork and navigation; keep the credit at the bottom. */
+/* Center the homepage picture itself in the viewport. */
 body::before{background-position:center center}
 html:has(main > section):not(:has(main > section:not([hidden]))){overflow-y:auto}
 main:not(:has(> section:not([hidden]))){
+  height:100svh;
   min-height:100svh;
-  justify-content:center;
-  padding-block:16px;
+  padding:0;
+  display:grid;
+  grid-template-rows:minmax(0,1fr) auto minmax(0,1fr);
+  justify-content:normal;
 }
 main:not(:has(> section:not([hidden])))>.poster{
+  grid-row:2;
   width:min(100%,max(240px,calc((100svh - 180px)*4/3)));
-  margin-inline:auto;
-  flex-shrink:0;
+  margin:0 auto;
 }
-main:not(:has(> section:not([hidden])))>.artist-credit{margin-top:0}
-/* Retain the original centered layout space while anchoring only the logo. */
-main:not(:has(> section:not([hidden])))>.artist-credit img{visibility:hidden;width:min(145px,60%)}
+main:not(:has(> section:not([hidden])))>.poster-menu{
+  grid-row:3;
+  align-self:start;
+}
+/* Anchor the credit without adding space to the centered layout. */
+main:not(:has(> section:not([hidden])))>.artist-credit{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+main:not(:has(> section:not([hidden])))>.artist-credit img{display:none}
 main:not(:has(> section:not([hidden])))>.artist-credit::after{
   content:"";
   position:fixed;
@@ -52,7 +66,8 @@ main:not(:has(> section:not([hidden])))>.artist-credit::after{
   aspect-ratio:580/247;
   background:url("artist-sigil-red.png?v=32f3a707") center/contain no-repeat;
   pointer-events:none;
-}</style>
+}
+</style>
 </head>
 <body>
 <main>
